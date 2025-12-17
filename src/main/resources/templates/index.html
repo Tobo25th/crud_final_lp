@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Listado de Viviendas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <h1>Listado de Viviendas</h1>
+        </div>
+        <br>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Calle</th>
+                    <th>Nro</th>
+                    <th>Titular</th>
+                    <th>Habitantes</th>
+                    <th>Propietario</th>
+                    <th>Barrio</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="vivienda : ${viviendas}">
+                    <td th:text="${vivienda.calle}">Calle</td>
+                    <td th:text="${vivienda.nro}">Número</td>
+                    <td th:text="${vivienda.titular}">Titular</td>
+                    <td th:text="${vivienda.habitantes}">Habitantes</td>
+                    <td th:text="${vivienda.propietario.nombre}">Propietario</td>
+                    <td th:text="${vivienda.barrio.nombre}">Barrio</td>
+                    <td>
+                        <a th:href="@{/viviendas/editar/{id}(id=${vivienda.id})}" class="btn btn-info">Modificar</a>
+                        <a th:onclick="eliminar([[${vivienda.id}|]])" class="btn btn-danger">Eliminar</a>
+                    </td>
+    
+                </tr>
+            </div>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-lg-3">
+        <a th:href="@{/viviendas/nuevo}" class="btn btn-primary btn-sm mb3">Agregar vivienda</a>
+        </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script th:src="@{/funciones.js}"></script>
+</html>
