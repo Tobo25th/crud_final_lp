@@ -2,6 +2,7 @@ package com.viviendas.Controller;
 
 import java.beans.PropertyEditorSupport;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +59,7 @@ public class ViviendasController {
         modelo.addAttribute("vivienda", servicio.obtenerViviendaPorId(id));
         modelo.addAttribute("propietarios", propietarios);
         modelo.addAttribute("barrios", barrios);
-        return "editar";
+        return "editar"; //edita la vivienda
     }
     
     
@@ -67,10 +68,6 @@ public class ViviendasController {
         Viviendas viviendaExistente = servicio.obtenerViviendaPorId(id);
         Barrio barrio = servicioBarrio.obtenerPorId(vivienda.getBarrio().getId());
         Propietario propietario = servicioPropietario.obtenerPorId(vivienda.getPropietario().getId());
-        // if (viviendaExistente == null) {
-        //     // Manejar el caso en que la vivienda no se encuentre
-        //     return "redirect:/viviendas";
-        // }
         viviendaExistente.setId(id);
         viviendaExistente.setCalle(vivienda.getCalle());
         viviendaExistente.setNro(vivienda.getNro());
@@ -79,7 +76,7 @@ public class ViviendasController {
         viviendaExistente.setPropietario(propietario);
         viviendaExistente.setBarrio(barrio);
         servicio.actualizarVivienda(viviendaExistente);
-        return "redirect:/viviendas";
+        return "redirect:/viviendas"; //actualiza la vivienda editada
     }
     
     
@@ -87,7 +84,7 @@ public class ViviendasController {
     @GetMapping("/viviendas/{id}")
     public String eliminarVivienda(@PathVariable int id) {
         servicio.eliminarVivienda(id);
-        return "redirect:/viviendas";
+        return "redirect:/viviendas"; //Elimina la vivienda de la lista
     }
     
     

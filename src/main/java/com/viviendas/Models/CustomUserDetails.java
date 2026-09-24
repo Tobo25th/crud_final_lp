@@ -1,12 +1,10 @@
 package com.viviendas.Models;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import org.springframework.security.core.userdetails.UserDetails;
-
-
 import java.util.Collection;
 import java.util.Collections;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomUserDetails implements UserDetails {
 
@@ -18,7 +16,6 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Si tienes roles, puedes devolverlos aquí. Por ahora, devolvemos una lista vacía.
         return Collections.emptyList();
     }
 
@@ -46,7 +43,7 @@ public class CustomUserDetails implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
+    
     @Override
     public boolean isEnabled() {
         return true;
